@@ -1,0 +1,26 @@
+{
+  "name": "mernstack",
+  "version": "1.0.0",
+  "description": "Mern Stack Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OnerBerk/MernStack.git"
+  },
+  "author": "OneBe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OnerBerk/MernStack/issues"
+  },
+  "homepage": "https://github.com/OnerBerk/MernStack#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11",
+    "nodemon": "^2.0.6"
+  }
+}
