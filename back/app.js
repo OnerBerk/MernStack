@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 dotenv.config({path:'./config/config.env'})
 
 // on importent les routes
-const hello = require('./routes/helloRoutes')
+const place = require('./routes/placeRoutes')
 
 //on importe la connection a mongo
 const connectDb = require('./config/database')
@@ -17,7 +17,7 @@ app.use(express.json())
 
 connectDb();
 
-app.use("/",hello);
+app.use("/api/v1/",place);
 
 const PORT = process.env.PORT;
 const NODE_ENV = process.env.NODE_ENV;
