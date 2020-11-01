@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv')
+const cors = require('cors')
 
 //configuration des variables du fichier config.env
 dotenv.config({path:'./config/config.env'})
@@ -13,6 +14,9 @@ const connectDb = require('./config/database')
 
 //set le bodyparser
 app.use(express.json())
+
+// permet la communication avec le front
+app.use(cors())
 
 
 connectDb();
