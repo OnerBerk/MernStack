@@ -20,7 +20,7 @@ dotenv.config({path:'./config/config.env'})
 const connectDb = require('./config/database');
 
 //set le bodyparser
-app.use(express.json())
+app.use(express.json({extend:false }))
 
 //set le cookie parser
 app.use(cookieParser())

@@ -1,0 +1,43 @@
+.formRegister{
+    padding: 2em;
+    margin-top: 2em;
+}
+.password{
+    width:148px;
+    margin:auto
+} 
+.password a{
+    font-size: smaller;
+    margin-right: -70px;
+}
+.login a{
+    list-style: none; 
+    font-size: larger;
+    color: black;
+}
+.register a{
+    list-style: none; 
+    font-size: larger;
+    color: black;
+}
+.home a{
+    list-style: none; 
+    font-size: larger;
+    color: black;
+}
+.displayError{
+    background-color: rgb(226, 2, 2);
+    color: snow;
+    width: 60%;
+    list-style: none;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom:0.5em;
+}
+.containerError{
+   width: 100%;
+}
+
+

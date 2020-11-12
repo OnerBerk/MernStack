@@ -6,7 +6,7 @@ import './navbar.scss'
 const Navbar =(props)=>{
     return (
             <nav className="nav">
-                <div className="logo">LOGO</div>
+                <div className="navTitle">MERN Blog</div>
                 <RightNav/>
                 <MenuItem/>
             </nav>

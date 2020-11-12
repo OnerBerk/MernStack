@@ -2,39 +2,60 @@
 
 nav{
     width: 100%;
+    border-radius: 15px;
     padding: 0.1em;
     display: flex;
     justify-content: space-between;
     font-family: 'Gilda Display', serif;
     font-size: 1.1em ;
-    background-color: rgba(139, 139, 139, 0.699);;
+    background-color: rgba(0, 0, 0, 0.829);;
 
 }
-.logo{
+.navTitle{
     padding : 1.5em;
+    color: snow;
 }
 .rightnav{
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
 }
+
 .rightnav a{
-    color: black;
+    color: snow;
     text-decoration: none;
 }
+.rightnav a:hover{
+    color: rgb(114, 179, 240);
+}
+
 @media(max-width:768px){
     .rightnav{
         display: none;
-        flex-flow: column nowrap;
-        background-color: brown;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 15%;
-        height: 100vh;
-        padding: 3.5em;
-        margin-top: 0; 
     };
+}
+.ham{
+    flex-flow: column nowrap;
+    background-color: rgb(49, 49, 49);
+    border-radius: 15px;
+    position: fixed;
+    margin-right: 3.5px;
+    top: 68px;
+    right: 0;
+    width: 45%;
+    height: 41em;
+    padding: 3.5em;
+    list-style: none;    
+    }
+
+.ham a{
+    list-style: none;
+    text-decoration: none;    
+    font-size: larger;
+    color: snow;
+}
+.ham a:hover{
+    color: rgb(114, 179, 240);
 }
 
 li{
@@ -45,23 +66,12 @@ li{
 .hamburger{
     visibility: hidden;
     position: fixed;
-    top: 15px;
+    top: 20px;
     right: 20px;
 }
 @media(max-width:768px){
     .hamburger{
         visibility: visible;
     }
-}
-.menunav{
-    flex-flow: column nowrap;
-    background-color: brown;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 15%;
-    height: 100vh;
-    padding: 3.5em;
-    margin-top: 0;
 }
 
