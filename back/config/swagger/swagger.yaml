@@ -1,0 +1,102 @@
+
+  swagger: '2.0'
+  info:
+    version: '1.0.0'
+    title: E-Food
+  schemes: [http,https]
+  host: localhost:8080
+  basePath: /api/v1
+  consumes: [application/json]
+  produces: [application/json]
+  # note the new info here as securityDefinitions
+  securityDefinitions:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+  paths:
+    /register:
+      post:
+        description: 'Returns token for authorized User'
+        tags: [user]
+        operationId: Register
+        consumes:
+          - "application/json"
+        parameters:
+          - name: 'login'
+            in: 'body'
+            required: true
+            description: 'Login Payload'
+            schema:
+              $ref: '#/definitions/User'
+        responses:
+          200:
+            description: Successful login
+            schema:
+              $ref: '#/definitions/LoginSuccess'
+          400:
+            description: Bad Request
+          404:
+            schema:
+              type: string
+            description: User not found
+          500:
+            schema:
+              type: string
+            description: Server error
+    /user/cart:
+      get:
+        description: 'Get All cart items'
+        tags: [user]
+        operationId: GetCart
+        # note the "security" tag created on the restricted endpoint
+        security:
+          - Bearer: []
+        responses:
+          200:
+            description: "All items in cart"
+            schema:
+              $ref: '#/definitions/CartPreview'
+          400:
+            description: Bad Request
+          404:
+            description: Item Not Found
+          500:
+            schema:
+              type: string
+            description: Server error
+  definitions:
+    LoginInfo:
+      type: object
+      required: [email,password]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    LoginSuccess:
+      type: object
+      properties:
+        success:
+          type: boolean
+        token:
+          type: string
+    CartPreview:
+      type: array
+      items:
+        $ref: '#/definitions/CartItem'
+    CartItem:
+      type: object
+      properties:
+        productId:
+          type: integer
+        productName:
+          type: string
+        quantity:
+          type: integer
+        unitPrice:
+          type: number
+        imageUrl:
+          type: string
+        currency:
+          type: string
