@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
   import Register from './component/pages/user/userRegister'
   import Login from './component/pages/user/userLogin'
   import Logout from './component/pages/user/userLogout'
+  import UserProfil from './component/pages/user/userProfil'
   import Place from './component/pages/place/place'
 
   import ProtectedRoute from './auth/ProtectedRoute/protectedRoute'
@@ -40,6 +41,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/logout" component={Logout}/>
+                <Route exact path="/user" component={UserProfil}/>
                 <Route exact path="/contact" component={Contact}/>
                 <ProtectedRoute exact path="/places" component={Place}/>
               </Switch>

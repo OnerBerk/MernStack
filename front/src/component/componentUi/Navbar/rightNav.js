@@ -1,17 +1,18 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {NavLink}from 'react-router-dom'
 import './navbar.scss'
-import { UserContext } from "../../../App"
 
 const RightNav =(props)=>{
-    const {userData} = useContext(UserContext)
+    const token = localStorage.getItem('auth-token')
+
 
     return (
         <div>
             {
-                userData.token ? (
+                token ? (
                 <ul className="rightnav">
                     <li><NavLink to='/'> Home </NavLink></li>
+                    <li><NavLink to='/user'> Your Profile </NavLink></li>
                     <li><NavLink to='/contact'> contact </NavLink></li>
                     <li><NavLink to='/logout'> logout </NavLink></li>
                 </ul>

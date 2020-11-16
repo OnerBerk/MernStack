@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useHistory } from 'react-router-dom'
 import {connect }from 'react-redux'
 import axios from 'axios'
-
-import { UserContext } from "../../../App"
 import useInput from '../../componentUi/Input/input'
 import'../user.scss'
 
@@ -12,10 +10,7 @@ const Register = (props) =>{
     const { value:Name, bind:bindName, reset:resetName } = useInput('');
     const { value:Email, bind:bindEmail, reset:resetEmail } = useInput('');
     const { value:Password, bind:bindPassword, reset:resetPassword } = useInput('');
-    
-    const { setUserData} = useContext(UserContext)
     const [formError, setFormError]= useState()
-
     const history = useHistory()
     
     const handleSubmit = (evt) => {
@@ -26,8 +21,6 @@ const Register = (props) =>{
     }
     
     const postUser= async(req, res, next)=>{
-        //const errors = validationResult(req)
-
 
        await axios.post("/register",{
         name:Name,
@@ -35,14 +28,8 @@ const Register = (props) =>{
         password:Password
         })    
         .then(function(res){
-            console.log("resdata", res.data)
-                setUserData({ 
-                    token:res.data.token,
-                    user:res.data.name
-                })
-                localStorage.setItem("auth-token",res.data.token)
-                history.push('/')
-        
+              console.log('enregistrer', res.data)
+              history.push('/login')
         })
         .catch(function(err){
             console.log(err.response.data.errors)

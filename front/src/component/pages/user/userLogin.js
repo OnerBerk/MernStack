@@ -34,15 +34,16 @@ const Login=(props)=>{
         password: Password
     })
     .then(function(res){
-        if((_isMounted.current)){
           console.log('connecté ')
           setUserData({ 
             token:res.data.token,
             user:res.data.user
           })
           localStorage.setItem("auth-token",res.data.token)
+          localStorage.setItem("user", JSON.stringify( res.data.user))
           history.push('/')
-        }
+          window.location.reload()
+        
     })
     .catch(function(err){
       console.log(err.response.data.errors)
@@ -63,34 +64,6 @@ const Login=(props)=>{
 
     </>
 )}
-    
-
-  
-  // const checkLoggedIn = async()=>{
-  //   let user
-  //   let token = localStorage.getItem("auth-token");
-  //   if(token === null){
-  //     localStorage.getItem("auth-token","");
-  //     token=""
-  //   }
-  //   const tokenRes = 
-  //   await axios.post(
-  //     "/tokenIsValid",
-  //      null,
-  //      { headers:{"x-auth-token" : token}} 
-  //   )
-  //   if(tokenRes.data){
-  //     const userRes = await axios.get(
-  //       "/users",
-  //       {headers:{"x-auth-token" : token},
-  //     })
-  //     setUserData({
-  //       token,
-  //       user: user.res.data
-  //     })
-  //   }
-  // console.log(tokenRes.data)
-  // }  
 
     return (
       <div>

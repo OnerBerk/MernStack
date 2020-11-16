@@ -40,4 +40,39 @@
    width: 100%;
 }
 
+table{
+   
+    margin: auto;
+  }
+  
+  td{
+    border: 1.5px double black;
+    padding: 10px;
+  }
+  .updatButton{
+    background-color: snow;
+    color: black;
+    border: 1.5px solid #086fb4;
+    transition-duration: 0.4s;
+  }
+  .updatButton:hover{
+    background-color: #086fb4; 
+    color: snow;
+  }
+  .deleteButton{
+    background-color: snow;
+    color: black;
+    border: 1.5px solid #dd271a;
+    transition-duration: 0.4s;
+  }
+  .deleteButton:hover{
+    background-color: #dd271a; 
+    color: snow;
+  }
+  .formTitle{
+    background-color: rgba(0, 0, 0, 0.829);
+    color: snow;
+
+  }
+
 

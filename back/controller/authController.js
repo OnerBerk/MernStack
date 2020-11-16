@@ -1,7 +1,8 @@
 const User =require('../models/userSchema')
 const catchAsyncerrors = require('../middleware/catchAsyncErrors')
-const gravatar = require('gravatar')
-//const userSchema = require('../models/userSchema');
+const gravatar = require('gravatar');
+const { json } = require('express');
+const ObjectID = require("mongoose").Types.ObjectId
 
 const options = {
     expires : new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24*60*60*1000),
@@ -77,21 +78,6 @@ exports.loginUser = catchAsyncerrors( async(req,res,next)=>{
 
 })
 
-//delet user => /api/v1/delete
-exports.deleteUser = catchAsyncerrors( async(req,res)=>{
-    console.log(req.user)
-    try {
-        await User.findByIdAndDelete(req.user);
-        res.json("Have a nice life , hope we will see you soon")
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('server Error')
-    }
-    console.log(req.user)
-})
-
-
-
 //Logout user  => /api/v1/logout
 exports.logout = catchAsyncerrors(async (req,res,next)=>{
     res.cookie('token','none',{
@@ -105,14 +91,57 @@ exports.logout = catchAsyncerrors(async (req,res,next)=>{
 })
 
 
-//get all users => /api/v1/users
-exports.getUser = catchAsyncerrors( async (req,res)=>{
-    const user = await User.findById(req.user);
+//get the connected users => /api/v1//user
+exports.getUserProfile = catchAsyncerrors( async (req,res)=>{
+    const user = await User.findById(req.user.id);
     res
+    .status(200)
     .json({
         name: user.name,
-        id: user._id
+        password: user.password,
+        data: user
     })
-    .status(200)
+    console.log(user)
  
 })
+
+//get all users => /api/v1//update
+exports.getUserAndUpdate = catchAsyncerrors( async (req,res)=>{
+    await User.findByIdAndUpdate(req.user.id,
+        {
+            name: req.body.name,
+            email: req.body.email
+        },
+    async function(err, data)
+        {
+            if(err){
+                console.log(err)
+            }
+            else{
+                res
+                .send(data);
+                console.log("user update")
+            }
+        });
+})
+
+
+//delet user => /api/v1/delete
+exports.deleteUser = catchAsyncerrors( async(req,res)=>{
+   if (!ObjectID.isValid(req.params.id))
+       return res
+       .status(400)
+       .send('no user with this ID')
+    
+   await User.findByIdAndRemove(req.params.id, (err, data)=>{
+        if(!err)
+        res.send(data)
+        else console.log('Error while deleting')
+    })
+
+   
+});
+
+
+
+

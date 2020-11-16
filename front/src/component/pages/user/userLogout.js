@@ -1,23 +1,18 @@
-import React, {useEffect, useContext } from 'react'
-import { Redirect } from 'react-router-dom'
-import { UserContext } from "../../../App"
+import React, {useEffect} from 'react'
+import { useHistory } from 'react-router-dom'
 
 const Logout=(props)=>{
-    const {setUserData} = useContext(UserContext)
+    const history = useHistory()
     useEffect (() => { 
         setNull()
     },[])
 
    
     const setNull =()=>{
-        setUserData({
-            token:undefined,
-            user:undefined
-        })
-        localStorage.setItem("auth-token", "")
-        return(
-            <Redirect to path="/" />
-        )
+        localStorage.removeItem("auth-token")
+        localStorage.clear()
+        history.push('/')
+        window.location.reload()
 }
 return(
     <>

@@ -7,7 +7,8 @@ try{
             {
             useNewUrlParser:true,
             useUnifiedTopology:true,
-            useCreateIndex:true
+            useCreateIndex:true,
+            useFindAndModify:false
             },
         ()=>console.log('connecter a MongoDb'));
 }
